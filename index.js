@@ -14,16 +14,14 @@ require("dotenv").config();
 // Database connection
 require('./config/mongoose-connect');
 
-app.use(cors());
 
-dotenv.config();
+
 
 
 
 // Routers
 const ownerRouter = require('./Route/ownerRouter');
 
-const db=require("./config/mongoose-connect");
 
 // Middleware setup
 app.use(express.json()); // Required for JSON body parsing
@@ -32,13 +30,16 @@ app.use(cookieParser());
 
 
 
-
+app.get("/",(req,res)=>{
+  res.send("welcome");
+})
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 
+app.use(cors());
 app.use(cors({
-  origin: 'http://localhost:5173', // or '*' for all origins (not recommended for production)
+  origin: 'https://irodovplusclasses.in', // or '*' for all origins (not recommended for production)
   credentials: true // if you use cookies
 }));
 
