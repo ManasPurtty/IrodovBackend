@@ -23,6 +23,13 @@ require('./config/mongoose-connect');
 const ownerRouter = require('./Route/ownerRouter');
 
 
+app.use(cors({
+  origin: 'https://irodovplusclasses.in', // or '*' for all origins (not recommended for production)
+  credentials: true // if you use cookies
+}));
+
+
+
 // Middleware setup
 app.use(express.json()); // Required for JSON body parsing
 app.use(express.urlencoded({ extended: true })); // For form submissions
@@ -37,11 +44,7 @@ app.get("/",(req,res)=>{
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 
-app.use(cors());
-app.use(cors({
-  origin: 'https://irodovplusclasses.in', // or '*' for all origins (not recommended for production)
-  credentials: true // if you use cookies
-}));
+
 
 // Routes
 
